@@ -2,6 +2,8 @@ syntax = "proto3";
 
 option csharp_namespace = "DoServicesApp";
 
+import "google/protobuf/empty.proto"; 
+
 
 service UserGrpc {
   rpc GetUser (GetUserRequest) returns (UserResponse);
@@ -48,7 +50,11 @@ service OrderGrpc {
 
   rpc CreateOrder (CreateOrderRequest) returns (OrderResponse) ;
   rpc GetOrder(GetOrderRequest) returns (OrderResponse);
+  rpc GetOrders(google.protobuf.Empty)returns (OrderListResponse);
 
+}
+message OrderListResponse {
+  repeated OrderResponse orders = 1;
 }
 
 
